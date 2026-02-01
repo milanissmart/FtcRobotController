@@ -11,7 +11,7 @@ public class Methods extends OpMode {
 
     }
 
-    double square(double input) {
+    public double square(double input) {
         double Output = input * input;
         if (input < 0) {
             Output = -Output;
