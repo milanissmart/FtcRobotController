@@ -18,15 +18,18 @@ public class TouchSensortgetvalue extends OpMode {
     public void loop() {
         String is_pressed = "not pressed";
         telemetry.addData("Touched", testbench.value());
-        if (testbench.value()==true){
-            is_pressed = "pressed";
-            testbench.speed(-gamepad1.left_stick_y);
-        }
         if (gamepad1.a){
             testbench.zero();
         } else if (gamepad1.b) {
             testbench.notzero();
         }
+         double motorspeed = testbench.speed(testbench.distance()/5);
+        if (motorspeed>1){
+            motorspeed = 1;
+        } else if (motorspeed<0) {
+            motorspeed = 0;
+        }
         telemetry.addData("touch Sensor is ",is_pressed);
+        telemetry.addData("distance",testbench.distance());
     }
 }

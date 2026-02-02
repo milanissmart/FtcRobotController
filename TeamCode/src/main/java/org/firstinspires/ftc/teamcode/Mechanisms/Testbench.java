@@ -2,7 +2,10 @@ package org.firstinspires.ftc.teamcode.Mechanisms;
 
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DigitalChannel;
+import com.qualcomm.robotcore.hardware.DistanceSensor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
+
+import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
 
 public class Testbench {
     // Touch Sensor
@@ -10,6 +13,8 @@ public class Testbench {
     //DC Motor
     private DcMotor dcMotor;
     private double getTicksPerRev;
+    // Distance sensor
+    private DistanceSensor distanceSensor;
 
     public void init(HardwareMap hwMap){
         // Touch sensor
@@ -20,6 +25,8 @@ public class Testbench {
             dcMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
             getTicksPerRev = dcMotor.getMotorType().getTicksPerRev();
             dcMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        // Distance Sensor
+            distanceSensor = hwMap.get(DistanceSensor.class,"distance");
     }
 //-----------------Touch Sensor-----------------
     public boolean value(){
@@ -42,5 +49,9 @@ public class Testbench {
     }
     public void notzero(){
         dcMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
+    }
+//---------------Distance Sensor-------------
+    public double distance(){
+        return distanceSensor.getDistance(DistanceUnit.INCH);
     }
 }
