@@ -1,9 +1,12 @@
 package org.firstinspires.ftc.teamcode.Mechanisms;
 
+import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.DigitalChannel;
 import com.qualcomm.robotcore.hardware.DistanceSensor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
+import com.qualcomm.robotcore.hardware.Servo;
 
 import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
 
@@ -15,6 +18,9 @@ public class Testbench {
     private double getTicksPerRev;
     // Distance sensor
     private DistanceSensor distanceSensor;
+    // Servo
+    private Servo servo;
+    private CRServo crServo;
 
     public void init(HardwareMap hwMap){
         // Touch sensor
@@ -27,6 +33,11 @@ public class Testbench {
             dcMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         // Distance Sensor
             distanceSensor = hwMap.get(DistanceSensor.class,"distance");
+        // Servo
+            servo = hwMap.get(Servo.class,"sevro");
+            crServo = hwMap.get(CRServo.class,"CR_Servo");
+            servo.scaleRange(0,1);
+            crServo.setDirection(DcMotorSimple.Direction.REVERSE);
     }
 //-----------------Touch Sensor-----------------
     public boolean value(){
@@ -53,5 +64,12 @@ public class Testbench {
 //---------------Distance Sensor-------------
     public double distance(){
         return distanceSensor.getDistance(DistanceUnit.INCH);
+    }
+//-------------------Servo------------------------
+    public void gotoservopos(double pos){
+        servo.setPosition(pos);
+    }
+    public void move(double power){
+        crServo.setPower(power);
     }
 }
