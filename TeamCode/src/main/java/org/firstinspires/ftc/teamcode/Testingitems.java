@@ -6,7 +6,7 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import org.firstinspires.ftc.teamcode.Mechanisms.Testbench;
 
 @TeleOp
-public class TouchSensortgetvalue extends OpMode {
+public class Testingitems extends OpMode {
     Testbench testbench = new Testbench();
     double right,left;
     @Override
