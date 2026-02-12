@@ -29,7 +29,7 @@ public class Testingdistancesensoranddcmotor extends OpMode {
         telemetry.addData("distance",distancesensor.distance());
         telemetry.addData("distance modify or motorspeed",distancesensor.distance()/5);
         telemetry.addData("what is the motor speed", motorspeed);
-        
+
 
     }
 
